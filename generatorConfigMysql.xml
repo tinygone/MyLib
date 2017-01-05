@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<classPathEntry
+		location="C:\Users\tinygone\.gradle\caches\modules-2\files-2.1\mysql\mysql-connector-java\5.1.39\4617fe8dc8f1969ec450984b0b9203bc8b7c8ad5\mysql-connector-java-5.1.39.jar" />
+	<context id="context1">
+		<jdbcConnection connectionURL="jdbc:mysql://dev.batrain.com:3306/singnow"
+			driverClass="com.mysql.jdbc.Driver" password="ktv123456" userId="ktv" />
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<javaModelGenerator targetPackage="com.batrain.singnow.domain"
+			targetProject="GEN">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<sqlMapGenerator targetPackage="com.batrain.singnow.mapping"
+			targetProject="GEN">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<javaClientGenerator targetPackage="com.batrain.singnow.dao"
+			targetProject="GEN" type="XMLMAPPER">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		<table tableName="system_menu" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<columnOverride column="id_system_menu" property="menuId" />
+			<columnOverride column="menu_name" property="menuName" />
+			<columnOverride column="menu_url" property="menuUrl" />
+			<columnOverride column="id_parent_menu" property="parentMenuId" />
+			<columnOverride column="sort_num" property="sortNum" />
+			<columnOverride column="menu_icon" property="menuIcon" />
+			<columnOverride column="menu_level" property="menuLevel" />
+			<columnOverride column="auth_flag" property="authFlag" />
+		</table>
+
+		
+
+	</context>
+</generatorConfiguration>
