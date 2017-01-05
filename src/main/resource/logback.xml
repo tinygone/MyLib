@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<configuration>
+	<substitutionProperty name="log.base" value="/var/log/logback" />
+	<substitutionProperty name="max.size" value="100MB" />
+	<substitutionProperty name="sys.name" value="mylib" />
+	<!-- ch.qos.logback.core.ConsoleAppender 控制台输出 -->
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>[%-5level] %d{HH:mm:ss.SSS} [%thread] %logger{36} - %msg%n
+			</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+	<appender name="file.all" class="ch.qos.logback.core.rolling.RollingFileAppender"><!-- All Log Info -->
+		<File>${log.base}/${sys.name}/${sys.name}.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${log.base}/${sys.name}/${sys.name}_all_%d{yyyy-MM-dd}.%i.log.zip
+			</FileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>${max.size}</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>[%-5level] %d{HH:mm:ss.SSS} [%thread] %logger{36} - %msg%n</pattern>
+			<charset>UTF-8</charset> 
+		</layout>
+	</appender>
+
+	<!-- 日志级别 -->
+	 <logger name="com.ty" additivity="false" level="debug">
+		<appender-ref ref="file.all" />
+		<appender-ref ref="console" />
+	</logger>
+	<!--<logger name="com.ibatis" additivity="false" level="debug">
+		<appender-ref ref="file.all" />
+	</logger>
+	<logger name="java.sql.Connection" additivity="false" level="debug">
+		<appender-ref ref="file.all" />
+	</logger>
+	<logger name="java.sql.Statement" additivity="false" level="debug">
+		<appender-ref ref="file.all" />
+	</logger>
+	<logger name="java.sql.PreparedStatemen" additivity="false" level="debug">
+		<appender-ref ref="file.all" />
+	</logger>
+	-->
+
+	<root>
+		<!-- 定义了ERROR和INFO级别的日志，分别在FILE文件和控制台输出 -->
+		<level value="debug" />
+		<appender-ref ref="console" />
+	</root>
+
+</configuration> 
